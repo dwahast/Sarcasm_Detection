@@ -45,7 +45,7 @@ class StdOutListener(StreamListener):
         dataTwitter.loc[len(dataTwitter)] = [''.join(tweet), 1]
         #print(dataTwitter.sample())
 
-        if(self.num_tweets <= 50):
+        if(self.num_tweets <= 3):
             print('Success: ', self.num_tweets)
             return True
         else:
@@ -65,11 +65,11 @@ if __name__ == '__main__':
     stream = Stream(auth, l, tweet_mode="extended")
 
     #This line filter Twitter Streams to capture data by the keywords: 'python', 'javascript', 'ruby'
-    stream.filter(track=['SQN','sqn', '#SQN','#sqn'], languages=['pt'],  async=True)
+    stream.filter(track=['SQN','sqn', '#SQN','#sqn'], languages=['pt'])
     #searched_tweets = api.search(q='#sqn', lang='pt', locale='BR', count=500, tweet_mode="extended")
 
     #write the df to csv file
-    dataTwitter.to_csv('twitter_sarcastic_data.csv')#index=False
+    dataTwitter.to_csv('twitter_sarcastic_data.csv', index=False)#
 
     print(dataTwitter.tail())
 
