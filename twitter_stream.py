@@ -3,6 +3,7 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy import API
+import tweepy
 import pandas as pd
 import json
 import os
@@ -62,16 +63,19 @@ if __name__ == '__main__':
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     api = API(auth)
-    stream = Stream(auth, l, tweet_mode="extended")
+    #stream = Stream(auth, l, tweet_mode="extended")
 
     #This line filter Twitter Streams to capture data by the keywords: 'python', 'javascript', 'ruby'
-    stream.filter(track=['SQN','sqn', '#SQN','#sqn'], languages=['pt'])
+    #stream.filter(track=['SQN','sqn', '#SQN','#sqn'], languages=['pt'])
     #searched_tweets = api.search(q='#sqn', lang='pt', locale='BR', count=500, tweet_mode="extended")
-
+    for tweet in tweepy.Cursor(api.search,q=["#sqn","#SQN","sqn","SQN"],count=2,tweet_mode="extended",result_type="recent",include_entities=True,lang="pt",locale='BR').items():
+        print("\n\nTWEET(text):\n", tweet.full_text)
+        if(tweet.in_reply_to_status_id != None):
+            print("EM RESPOSTA A:\n", api.get_status(tweet.in_reply_to_status_id, tweet_mode="extended").full_text, "\n\n")
     #write the df to csv file
-    dataTwitter.to_csv('twitter_sarcastic_data.csv', index=False)#
+    #dataTwitter.to_csv('twitter_sarcastic_data.csv', index=False)#
 
-    print(dataTwitter.tail())
+    #print(dataTwitter.tail())
 
     #tweets_data = []
 
