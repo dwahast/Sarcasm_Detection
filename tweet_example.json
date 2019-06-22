@@ -1,0 +1,230 @@
+{
+  "created_at": "Thu Jun 20 22:22:02 +0000 2019",
+  "id": 1141833615988469761,
+  "id_str": "1141833615988469761",
+  "text": "RT @tavorecife: Imparcial? SQN! @reinaldoazevedo confirma o que todos os humanos já sabiam: casadinha de moro e Santos Lima manipularam os…",
+  "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+  "truncated": false,
+  "in_reply_to_status_id": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
+  "user": {
+    "id": 2842979301,
+    "id_str": "2842979301",
+    "name": "cruzeirosempre",
+    "screen_name": "cruzeirosiempre",
+    "location": null,
+    "url": null,
+    "description": "💙 #Lulalivre",
+    "translator_type": "none",
+    "protected": false,
+    "verified": false,
+    "followers_count": 61,
+    "friends_count": 298,
+    "listed_count": 0,
+    "favourites_count": 23371,
+    "statuses_count": 8343,
+    "created_at": "Fri Oct 24 23:13:31 +0000 2014",
+    "utc_offset": null,
+    "time_zone": null,
+    "geo_enabled": false,
+    "lang": null,
+    "contributors_enabled": false,
+    "is_translator": false,
+    "profile_background_color": "C0DEED",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_link_color": "1DA1F2",
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "profile_image_url": "http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png",
+    "profile_image_url_https": "https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png",
+    "default_profile": true,
+    "default_profile_image": false,
+    "following": null,
+    "follow_request_sent": null,
+    "notifications": null
+  },
+  "geo": null,
+  "coordinates": null,
+  "place": null,
+  "contributors": null,
+  "retweeted_status": {
+    "created_at": "Thu Jun 20 22:21:25 +0000 2019",
+    "id": 1141833460874657796,
+    "id_str": "1141833460874657796",
+    "text": "Imparcial? SQN! @reinaldoazevedo confirma o que todos os humanos já sabiam: casadinha de moro e Santos Lima manipul… https://t.co/XvqCjXYlnz",
+    "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+    "truncated": true,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "in_reply_to_screen_name": null,
+    "user": {
+      "id": 156803318,
+      "id_str": "156803318",
+      "name": "Lula Haddad Comuna Ursalino 13 da Silva",
+      "screen_name": "tavorecife",
+      "location": "Ursene",
+      "url": null,
+      "description": "Contador, morador da URSENE, a favor da democracia e contra qualquer desmonte que a população mais sensível e carente possa vir a sofrer! #OdioENojoADitadura",
+      "translator_type": "none",
+      "protected": false,
+      "verified": false,
+      "followers_count": 229,
+      "friends_count": 406,
+      "listed_count": 1,
+      "favourites_count": 17532,
+      "statuses_count": 2659,
+      "created_at": "Fri Jun 18 00:16:02 +0000 2010",
+      "utc_offset": null,
+      "time_zone": null,
+      "geo_enabled": true,
+      "lang": null,
+      "contributors_enabled": false,
+      "is_translator": false,
+      "profile_background_color": "000000",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile": false,
+      "profile_link_color": "FF691F",
+      "profile_sidebar_border_color": "FFFFFF",
+      "profile_sidebar_fill_color": "F7DA93",
+      "profile_text_color": "000000",
+      "profile_use_background_image": true,
+      "profile_image_url": "http://pbs.twimg.com/profile_images/1112430476784996353/BT3MGVMw_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/1112430476784996353/BT3MGVMw_normal.jpg",
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/156803318/1554059208",
+      "default_profile": false,
+      "default_profile_image": false,
+      "following": null,
+      "follow_request_sent": null,
+      "notifications": null
+    },
+    "geo": null,
+    "coordinates": null,
+    "place": null,
+    "contributors": null,
+    "is_quote_status": false,
+    "extended_tweet": {
+      "full_text": "Imparcial? SQN! @reinaldoazevedo confirma o que todos os humanos já sabiam: casadinha de moro e Santos Lima manipularam os atores e atrizes da farsa-tarefa para condenar o @LulaOficial\n#MoroMentiu",
+      "display_text_range": [
+        0,
+        196
+      ],
+      "entities": {
+        "hashtags": [
+          {
+            "text": "MoroMentiu",
+            "indices": [
+              185,
+              196
+            ]
+          }
+        ],
+        "urls": [],
+        "user_mentions": [
+          {
+            "screen_name": "reinaldoazevedo",
+            "name": "Reinaldo Azevedo",
+            "id": 18286139,
+            "id_str": "18286139",
+            "indices": [
+              16,
+              32
+            ]
+          },
+          {
+            "screen_name": "LulaOficial",
+            "name": "Lula",
+            "id": 2670726740,
+            "id_str": "2670726740",
+            "indices": [
+              172,
+              184
+            ]
+          }
+        ],
+        "symbols": []
+      }
+    },
+    "quote_count": 0,
+    "reply_count": 0,
+    "retweet_count": 1,
+    "favorite_count": 2,
+    "entities": {
+      "hashtags": [],
+      "urls": [
+        {
+          "url": "https://t.co/XvqCjXYlnz",
+          "expanded_url": "https://twitter.com/i/web/status/1141833460874657796",
+          "display_url": "twitter.com/i/web/status/1…",
+          "indices": [
+            117,
+            140
+          ]
+        }
+      ],
+      "user_mentions": [
+        {
+          "screen_name": "reinaldoazevedo",
+          "name": "Reinaldo Azevedo",
+          "id": 18286139,
+          "id_str": "18286139",
+          "indices": [
+            16,
+            32
+          ]
+        }
+      ],
+      "symbols": []
+    },
+    "favorited": false,
+    "retweeted": false,
+    "filter_level": "low",
+    "lang": "pt"
+  },
+  "is_quote_status": false,
+  "quote_count": 0,
+  "reply_count": 0,
+  "retweet_count": 0,
+  "favorite_count": 0,
+  "entities": {
+    "hashtags": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "screen_name": "tavorecife",
+        "name": "Lula Haddad Comuna Ursalino 13 da Silva",
+        "id": 156803318,
+        "id_str": "156803318",
+        "indices": [
+          3,
+          14
+        ]
+      },
+      {
+        "screen_name": "reinaldoazevedo",
+        "name": "Reinaldo Azevedo",
+        "id": 18286139,
+        "id_str": "18286139",
+        "indices": [
+          32,
+          48
+        ]
+      }
+    ],
+    "symbols": []
+  },
+  "favorited": false,
+  "retweeted": false,
+  "filter_level": "low",
+  "lang": "pt",
+  "timestamp_ms": "1561069322951"
+}
