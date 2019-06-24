@@ -32,7 +32,7 @@ else:
 print("Current DataFrame( size = ", len(dataTwitter),'):')
 print(dataTwitter.tail(10))
 old_size_df = len(dataTwitter)
-limit = 500000
+limit = 2000
 num_tweets = 0
 #main code, reading tweets and get their text and the reply text if were a reply.
 print('----------------------- [ {} / {} ] -----------------------'.format(num_tweets,limit))
