@@ -32,41 +32,42 @@ else:
 print("Current DataFrame( size = ", len(dataTwitter),'):')
 print(dataTwitter.tail(10))
 old_size_df = len(dataTwitter)
-limit = 50
+limit = 500000
 num_tweets = 0
 #main code, reading tweets and get their text and the reply text if were a reply.
 print('----------------------- [ {} / {} ] -----------------------'.format(num_tweets,limit))
 find = ["#sqn","#SQN","#Sqn","sqn","SQN", "Sqn"]
-for tweet in tweepy.Cursor(api.search,
-                            q=find,
-                            count=100,
-                            tweet_mode="extended",
-                            result_type="mixed",
-                            include_entities=True,
-                            lang="pt",
-                            locale='BR').items(limit):
-    tweet_text,reply_text,quoted_text = '','',''
-    tweet = tweet._json
-    #print(tweet)
-    if(not 'retweeted_status' in tweet):#ignoring RT (just is a tweet)
-        if(f in tweet['full_text'] for f in find ):
-            print("TWEET(EXT):", tweet['full_text'])
-            tweet_text = tweet['full_text']
+while num_tweets < limit:
+    for tweet in tweepy.Cursor(api.search,
+                                q=find,
+                                count=100,
+                                tweet_mode="extended",
+                                result_type="mixed",
+                                include_entities=True,
+                                lang="pt",
+                                locale='BR').items(limit):
+        tweet_text,reply_text,quoted_text = '','',''
+        tweet = tweet._json
+        #print(tweet)
+        if(not 'retweeted_status' in tweet):#ignoring RT (just is a tweet)
+            if(f in tweet['full_text'] for f in find ):
+                print("TWEET(EXT):", tweet['full_text'])
+                tweet_text = tweet['full_text']
 
-            if('quoted_status' in tweet):
-                print(tweet)
-                print('QUOTED(Nor):', tweet['quoted_status']['full_text'])
-                quoted_text = tweet['quoted_status']['full_text']
+                if('quoted_status' in tweet):
+                    #print(tweet)
+                    print('QUOTED(Nor):', tweet['quoted_status']['full_text'])
+                    quoted_text = tweet['quoted_status']['full_text']
 
-            if(tweet['in_reply_to_status_id'] != None):
-                try:
-                    print("\nIN REPLY TO:", api.get_status(tweet['in_reply_to_status_id'], tweet_mode="extended").full_text)
-                    reply_text = api.get_status(tweet['in_reply_to_status_id'], tweet_mode="extended").full_text
-                except:
-                    pass
-            dataTwitter.loc[len(dataTwitter)] = [tweet_text, reply_text, quoted_text, 1]
-            num_tweets += 1
-            print('----------------------- [ {} / {} ] -----------------------'.format(num_tweets,limit))
+                if(tweet['in_reply_to_status_id'] != None):
+                    try:
+                        print("\nIN REPLY TO:", api.get_status(tweet['in_reply_to_status_id'], tweet_mode="extended").full_text)
+                        reply_text = api.get_status(tweet['in_reply_to_status_id'], tweet_mode="extended").full_text
+                    except:
+                        pass
+                dataTwitter.loc[len(dataTwitter)] = [tweet_text, reply_text, quoted_text, 1]
+                num_tweets += 1
+                print('----------------------- [ {} / {} ] -----------------------'.format(num_tweets,limit))
 
 print("\nAdded: ",len(dataTwitter) - old_size_df)
 

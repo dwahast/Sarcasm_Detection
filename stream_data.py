@@ -13,7 +13,7 @@ access_token = "243433303-wKdHFsVG2Lm5zpDY43L3phchSrTHAHTQejxsYj5S"
 access_token_secret = "W3c7GbaU3S0wH2c5yXcniL3T8z42qADboaCR1WGDoblvh"
 consumer_key = "gMChjJwVfA3FroAqExIqiUQfg"
 consumer_secret = "flMX4koxYMpIbHvBhgX8iYpJ5MGxpfN1InEqs4RUfOUQK4ooYK"
-limit = 20
+limit = 10
 find = ["#sqn","#SQN","#Sqn","sqn","SQN", "Sqn"]
 
 class StdOutListener(StreamListener):
@@ -41,33 +41,36 @@ class StdOutListener(StreamListener):
             #     tweet_text = tweet['retweeted_status']['text']
 
         else:
-            if(f in tweet['full_text'] for f in find ):
-                if(tweet['truncated'] != False):
+
+            if(tweet['truncated'] != False):
+                if(f in tweet['extended_tweet']['full_text'] for f in find):
                     print("TWEET(EXT):", tweet['extended_tweet']['full_text'])
                     tweet_text = tweet['extended_tweet']['full_text']
-                else:
+                else: return True
+            else:
+                if(f in tweet['text'] for f in find):
                     print('TWEET:', tweet['text'])
                     tweet_text = tweet['text']
+                else:return True
+
+            if('quoted_status' in tweet):
+                if(tweet['quoted_status']['truncated'] == False):
+                    print('QUOTED(Nor):', tweet['quoted_status']['text'])
+                    quoted_text = tweet['quoted_status']['text']
+                else:
+                    print('QUOTED(EXT):', tweet['quoted_status']['extended_tweet']['full_text'])
+                    quoted_text = tweet['quoted_status']['extended_tweet']['full_text']
 
 
-                if('quoted_status' in tweet):
-                    if(tweet['quoted_status']['truncated'] == False):
-                        print('QUOTED(Nor):', tweet['quoted_status']['text'])
-                        quoted_text = tweet['quoted_status']['text']
-                    else:
-                        print('QUOTED(EXT):', tweet['quoted_status']['extended_tweet']['full_text'])
-                        quoted_text = tweet['quoted_status']['extended_tweet']['full_text']
+            if(tweet['in_reply_to_status_id'] != None):
+                print("\nIN REPLY TO:", api.get_status(tweet['in_reply_to_status_id'], tweet_mode="extended").full_text)
+                reply_text = api.get_status(tweet['in_reply_to_status_id'], tweet_mode="extended").full_text
 
+            dataTwitter.loc[len(dataTwitter)] = [tweet_text, reply_text, quoted_text, 1]
 
-                if(tweet['in_reply_to_status_id'] != None):
-                    print("\nIN REPLY TO:", api.get_status(tweet['in_reply_to_status_id'], tweet_mode="extended").full_text)
-                    reply_text = api.get_status(tweet['in_reply_to_status_id'], tweet_mode="extended").full_text
+            self.num_tweets += 1
 
-                dataTwitter.loc[len(dataTwitter)] = [tweet_text, reply_text, quoted_text, 1]
-
-                self.num_tweets += 1
-
-                print('----------------------- [ {} / {} ] -----------------------'.format(self.num_tweets,self.limit))
+            print('----------------------- [ {} / {} ] -----------------------'.format(self.num_tweets,self.limit))
 
         if(self.num_tweets < self.limit):
             return True
