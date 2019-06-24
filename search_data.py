@@ -45,7 +45,7 @@ while num_tweets < limit:
                                 result_type="mixed",
                                 include_entities=True,
                                 lang="pt",
-                                locale='BR').items(limit):
+                                locale='BR').items(1):
         tweet_text,reply_text,quoted_text = '','',''
         tweet = tweet._json
         #print(tweet)
