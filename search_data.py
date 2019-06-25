@@ -17,7 +17,7 @@ consumer_secret = "flMX4koxYMpIbHvBhgX8iYpJ5MGxpfN1InEqs4RUfOUQK4ooYK"
 #This handles Twitter authetification and the connection to Twitter Streaming API
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
-api = API(auth)
+api = API(auth, wait_on_rate_limit = True)
 
 #if file exists
 if(os.path.isfile('sarcastic_data.csv')):
@@ -34,18 +34,29 @@ print(dataTwitter.tail(10))
 old_size_df = len(dataTwitter)
 limit = 2000
 num_tweets = 0
+
+def limit_handled(cursor):
+    while True:
+        try:
+            yield cursor.next()
+        except StopIteration:
+            return
+        #except tweepy.RateLimitError:
+        #    time.sleep(15 * 60)
+
+
 #main code, reading tweets and get their text and the reply text if were a reply.
 print('----------------------- [ {} / {} ] -----------------------'.format(num_tweets,limit))
-find = ["#sqn","#SQN","#Sqn","sqn","SQN", "Sqn"]
+find = ["#sqn","#SQN","#Sqn","sqn","SQN", "Sqn"]#, "#sarcasmo", "#SARCASMO", "#Sarcasmo"]
 while num_tweets < limit:
-    for tweet in tweepy.Cursor(api.search,
+    for tweet in limit_handled(tweepy.Cursor(api.search,
                                 q=find,
                                 count=100,
                                 tweet_mode="extended",
                                 result_type="mixed",
                                 include_entities=True,
                                 lang="pt",
-                                locale='BR').items(1):
+                                locale='BR').items()):
         tweet_text,reply_text,quoted_text = '','',''
         tweet = tweet._json
         #print(tweet)

@@ -13,7 +13,7 @@ access_token = "243433303-wKdHFsVG2Lm5zpDY43L3phchSrTHAHTQejxsYj5S"
 access_token_secret = "W3c7GbaU3S0wH2c5yXcniL3T8z42qADboaCR1WGDoblvh"
 consumer_key = "gMChjJwVfA3FroAqExIqiUQfg"
 consumer_secret = "flMX4koxYMpIbHvBhgX8iYpJ5MGxpfN1InEqs4RUfOUQK4ooYK"
-limit = 100
+limit = 300
 find = ["#sqn","#SQN","#Sqn","sqn","SQN", "Sqn"]
 
 class StdOutListener(StreamListener):
