@@ -32,7 +32,7 @@ else:
 print("Current DataFrame( size = ", len(dataTwitter),'):')
 print(dataTwitter.tail(10))
 old_size_df = len(dataTwitter)
-limit = 2000
+limit = 5
 num_tweets = 0
 
 def limit_handled(cursor):
@@ -56,7 +56,7 @@ while num_tweets < limit:
                                 result_type="mixed",
                                 include_entities=True,
                                 lang="pt",
-                                locale='BR').items()):
+                                locale='BR').items(limit)):
         tweet_text,reply_text,quoted_text = '','',''
         tweet = tweet._json
         #print(tweet)
