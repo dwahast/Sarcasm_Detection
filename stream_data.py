@@ -13,7 +13,7 @@ access_token = "243433303-wKdHFsVG2Lm5zpDY43L3phchSrTHAHTQejxsYj5S"
 access_token_secret = "W3c7GbaU3S0wH2c5yXcniL3T8z42qADboaCR1WGDoblvh"
 consumer_key = "gMChjJwVfA3FroAqExIqiUQfg"
 consumer_secret = "flMX4koxYMpIbHvBhgX8iYpJ5MGxpfN1InEqs4RUfOUQK4ooYK"
-limit = 300
+limit = 5
 find = ["#sqn","#SQN","#Sqn","sqn","SQN", "Sqn"]
 
 class StdOutListener(StreamListener):
@@ -89,40 +89,47 @@ if __name__ == '__main__':
     auth.set_access_token(access_token, access_token_secret)
     api = API(auth)
     l = StdOutListener()
+    total_truly_added = 0
+    m = 0
+    while m < 50:
+        #if file exists
+        if(os.path.isfile('sarcastic_data.csv')):
+            print("CSV Already exists.\n reading...")
+            dataTwitter = pd.read_csv('sarcastic_data.csv')
+            dataTwitter = dataTwitter[['text', 'in_reply','quoted_text', 'is_sarcastic']]
+        else:
+            print("CSV don't exists, new Data Frame created.\n")
+            dataTwitter = pd.DataFrame(columns=['text','in_reply','quoted_text','is_sarcastic'])
 
-    #if file exists
-    if(os.path.isfile('sarcastic_data.csv')):
-        print("CSV Already exists.\n reading...")
-        dataTwitter = pd.read_csv('sarcastic_data.csv')
-        dataTwitter = dataTwitter[['text', 'in_reply','quoted_text', 'is_sarcastic']]
-    else:
-        print("CSV don't exists, new Data Frame created.\n")
-        dataTwitter = pd.DataFrame(columns=['text','in_reply','quoted_text','is_sarcastic'])
 
-    #print current dataframe
-    print("Current DataFrame( size = ", len(dataTwitter),'):')
-    print(dataTwitter.tail(10),"\n")
-    old_size_df = len(dataTwitter)
+        #print current dataframe
+        print("Current DataFrame( size = {} ):".format(len(dataTwitter)))
+        print(dataTwitter.tail(10),"\n")
+        old_size_df = len(dataTwitter)
 
-    stream = Stream(auth, l, tweet_mode="extended")
+        stream = Stream(auth, l, tweet_mode="extended")
 
-    print('----------------------- [ 0 / {} ] -----------------------'.format(limit))
+        print('----------------------- [ 0 / {} ] -----------------------'.format(limit))
 
-    #This line filter Twitter Streams to capture data by the keywords:
-    stream.filter(track=find, languages=['pt'])
+        #This line filter Twitter Streams to capture data by the keywords:
+        stream.filter(track=find, languages=['pt'])
 
-    print("\nAdded: ",len(dataTwitter) - old_size_df)
+        print("\nAdded: ",len(dataTwitter) - old_size_df)
+        print(m, '/50')
 
-    #drop duplicated rows
-    lb = len(dataTwitter)
-    dataTwitter = dataTwitter.drop_duplicates(['text'],keep='last')
-    print("Duplicated data Removed: ",lb - len(dataTwitter))
-    print("\nRelevant Added: ",len(dataTwitter) - old_size_df)
+        #drop duplicated rows
+        lb = len(dataTwitter)
+        dataTwitter = dataTwitter.drop_duplicates(['text'],keep='last')
+        print("Duplicated data Removed: ",lb - len(dataTwitter))
+        print("\nRelevant Added: ",len(dataTwitter) - old_size_df)
+        total_truly_added += len(dataTwitter) - old_size_df
+        
+        #print new dataframe
+        print("Data Frame after this execution:")
+        print(dataTwitter.tail())
 
-    #print new dataframe
-    print("Data Frame after this execution:")
-    print(dataTwitter.tail())
-
-    #write the df to csv file
-    dataTwitter.to_csv('sarcastic_data.csv', index=False)#
-    print("Sucessul Writing CSV to file")
+        #write the df to csv file
+        dataTwitter.to_csv('sarcastic_data.csv', index=False)#
+        print("Sucessul Writing CSV to file")
+        m += 1
+    print('Total realmente adicionado depois das iterações:',total_truly_added)

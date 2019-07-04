@@ -32,7 +32,7 @@ else:
 print("Current DataFrame( size = ", len(dataTwitter),'):')
 print(dataTwitter.tail(10))
 old_size_df = len(dataTwitter)
-limit = 1700
+limit = 4000
 num_tweets = 0
 
 def limit_handled(cursor):
